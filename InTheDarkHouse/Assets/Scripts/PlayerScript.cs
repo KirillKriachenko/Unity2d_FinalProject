@@ -9,12 +9,15 @@ public class PlayerScript : MonoBehaviour {
     //KeyCode upArrow = KeyCode.UpArrow;
     //KeyCode downArrow = KeyCode.DownArrow;
 
-    Animator animator;
+    public Animator animator;
+    public Animation animation;
 
     public AnimationClip walkUp;
     public AnimationClip walkLeft;
     public AnimationClip walkDown;
     public AnimationClip walkRight;
+
+    public DoorIteraction doorObjectScript;
 
 
 
@@ -25,50 +28,61 @@ public class PlayerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
-        animator = this.GetComponent<Animator>();
+
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
     }
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            animator.SetBool(walkLeft.name, true);
-            //walkLeft.Play("PlayerWalkLeft");
+        { 
+            animator.enabled = true;
+            animator.Play(walkLeft.name);
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            animator.enabled = false;
+        }
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            animator.enabled = true;
+            animator.Play(walkRight.name);
             transform.position += Vector3.right * speed * Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            animator.enabled = false;
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
+            animator.enabled = true;
+            animator.Play(walkUp.name);
             transform.position += Vector3.up * speed * Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            animator.enabled = false;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
+            animator.enabled = true;
+            animator.Play(walkDown.name);
             transform.position += Vector3.down * speed * Time.deltaTime;
         }
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            animator.enabled = false;
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            if (doorObjectScript.openable)
+            {
+                doorObjectScript.animator.enabled = true;
+            }
+        }
     }
-    //void FixedUpdate()
-    //{
-    //    //Store the current horizontal input in the float moveHorizontal.
-    //    float moveHorizontal = Input.GetAxis("Horizontal");
-
-    //    //Store the current vertical input in the float moveVertical.
-    //    float moveVertical = Input.GetAxis("Vertical");
-
-    //    //Use the two store floats to create a new Vector2 variable movement.
-    //    Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-
-    //    //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-    //    //rigidbody.AddForce(movement * speed);
-    //}
-
-    // Update is called once per frame
-    //   void Update () {
-    //       if (Input.GetKeyDown(rightArrow))
-    //       {
-
-    //       }
-
-    //}
+   
 }
