@@ -6,20 +6,61 @@ public class DoorIteraction : MonoBehaviour {
 
     public bool openable;
     public bool locked;
+    public bool open;
     public GameObject itemNeeded;
-    public GameObject door;
+
     public Animator animator;
-    public AnimationClip animationClip;
+    public Animation anim;
+    public AnimationClip doorOpen;
+    public AnimationClip doorClose;
 
+    public GameObject doorObject;
+    public GameObject player;
+    public float distance;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         animator = GetComponent<Animator>();
         animator.enabled = false;
-	}
+        open = false;
+        anim = GetComponent<Animation>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        doorObject = GameObject.FindGameObjectWithTag("Door");
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        
+    }
+
+    public void openDoor()
+    {
+
+        if (Vector2.Distance(player.transform.position, doorObject.transform.position) < distance)
+        {
+            Debug.Log("Door open function");
+            if (open == false)
+            {
+                animator.enabled = true;
+                animator.Play(doorOpen.name);
+                open = true;
+                return;
+            }
+            if (open == true)
+            {
+                animator.enabled = true;
+                animator.Play(doorClose.name);
+                open = false;
+                return;
+            }
+            //if (open == true)
+            //{
+            //    animator.Play(doorClose.name);
+            //    open = false;
+            //}
+
+            //TODO: Play animation open door
+
+        }
+    }
 }

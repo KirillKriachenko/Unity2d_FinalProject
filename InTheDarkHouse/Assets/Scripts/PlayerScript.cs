@@ -19,8 +19,11 @@ public class PlayerScript : MonoBehaviour {
 
     public DoorIteraction doorObjectScript;
 
-
-
+    public GameObject myLight;
+    public bool lightPicked;
+    public float distance;
+    public Camera inventoryCamera;
+    public Camera playerCamera;
     public float speed;
 
     private Rigidbody2D rigidbody;
@@ -28,12 +31,27 @@ public class PlayerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
-
         animator = GetComponent<Animator>();
         animator.enabled = false;
+
+        lightPicked = false;
     }
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.B))
+        {
+            Debug.Log("Click B");
+            if (inventoryCamera.enabled == false)
+            {
+                playerCamera.enabled = false;
+                inventoryCamera.enabled = true;
+            }
+            else
+            {
+                inventoryCamera.enabled = false;
+                playerCamera.enabled = true;
+            }
+        }
         if (Input.GetKey(KeyCode.LeftArrow))
         { 
             animator.enabled = true;
@@ -76,12 +94,36 @@ public class PlayerScript : MonoBehaviour {
             animator.enabled = false;
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E))
         {
+            Debug.Log("E - pressed");
             if (doorObjectScript.openable)
             {
-                doorObjectScript.animator.enabled = true;
+                doorObjectScript.openDoor();
+                
             }
+        }
+
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            if (Vector2.Distance(this.transform.position, myLight.transform.position) < distance)
+            {
+                if (lightPicked == false)
+                {
+                    lightPicked = true;
+                    return;
+                }
+                if (lightPicked == true)
+                {
+                    lightPicked = false;
+                }
+            }
+            
+        }
+
+        if (lightPicked == true)
+        {
+            myLight.transform.SetPositionAndRotation(this.transform.position, this.transform.rotation);
         }
     }
    
