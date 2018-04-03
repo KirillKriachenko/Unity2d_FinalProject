@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour {
     public AnimationClip walkRight;
 
     public DoorIteraction doorObjectScript;
+    public Inventory inventory;
 
     public GameObject myLight;
     public bool lightPicked;
@@ -38,20 +39,21 @@ public class PlayerScript : MonoBehaviour {
     }
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.B))
-        {
-            Debug.Log("Click B");
-            if (inventoryCamera.enabled == false)
-            {
-                playerCamera.enabled = false;
-                inventoryCamera.enabled = true;
-            }
-            else
-            {
-                inventoryCamera.enabled = false;
-                playerCamera.enabled = true;
-            }
-        }
+        //if (Input.GetKeyUp(KeyCode.B))
+        //{
+        //    Debug.Log("Click B");
+        //    if (inventoryCamera.enabled == false)
+        //    {
+        //        playerCamera.enabled = false;
+        //        inventoryCamera.enabled = true;
+                
+        //    }
+        //    else
+        //    {
+        //        inventoryCamera.enabled = false;
+        //        playerCamera.enabled = true;
+        //    }
+        //}
         if (Input.GetKey(KeyCode.LeftArrow))
         { 
             animator.enabled = true;
@@ -96,6 +98,14 @@ public class PlayerScript : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.E))
         {
+            if (doorObjectScript.locked == true)
+            {
+                if (inventory.FindItem(doorObjectScript.itemNeeded) == true)
+                {
+                    inventory.RemoveItem(doorObjectScript.itemNeeded);
+                    doorObjectScript.openDoor();
+                }
+            }
             Debug.Log("E - pressed");
             if (doorObjectScript.openable)
             {

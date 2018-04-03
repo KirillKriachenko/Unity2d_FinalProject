@@ -7,7 +7,7 @@ public class DoorIteraction : MonoBehaviour {
     public bool openable;
     public bool locked;
     public bool open;
-    public GameObject itemNeeded;
+    public Texture itemNeeded;
 
     public Animator animator;
     public Animation anim;

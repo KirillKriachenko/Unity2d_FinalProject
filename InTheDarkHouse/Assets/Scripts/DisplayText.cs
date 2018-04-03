@@ -10,8 +10,12 @@ public class DisplayText : MonoBehaviour {
     public Text text;
     public GameObject playerCamera;
     public GameObject textCamera;
+    public BoxCollider2D trigger;
 
-    public GameObject foundObject;
+
+    public Texture foundObject;
+
+    public Inventory inventory;
 	// Use this for initialization
 	void Start () {
 
@@ -25,7 +29,8 @@ public class DisplayText : MonoBehaviour {
             text.enabled = false;
             textCamera.SetActive(false);
             playerCamera.SetActive(true);
-            Destroy(this);
+            inventory.AddItem(foundObject);
+            Destroy(trigger);
         }
 	}
 
