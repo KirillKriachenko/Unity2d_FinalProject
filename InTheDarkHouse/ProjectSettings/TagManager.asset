@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - BackPack
   - Door
+  - box1
+  - box2
+  - case
+  - Cameratext
   layers:
   - Default
   - TransparentFX

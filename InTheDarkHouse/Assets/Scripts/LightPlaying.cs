@@ -21,16 +21,11 @@ public class LightPlaying : MonoBehaviour {
         {
             //Vector3 playerPostition = 
             //= player.transform.position.x;
-            Debug.Log(light.transform.position.x.ToString());
+            //Debug.Log(light.transform.position.x.ToString());
             //light.transform.position.y = player.transform.position.y;
         }
 	}
 
-    //public void OnTriggerEnter2D(Collider2D other)
-    //{
-       
-
-    //}
 
     public void OnTriggerEnter2D()
     {

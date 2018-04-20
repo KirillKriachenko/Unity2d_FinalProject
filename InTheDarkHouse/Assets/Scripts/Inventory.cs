@@ -28,9 +28,11 @@ public class Inventory : MonoBehaviour {
         {
             if (items[i] == itemToRemove)
             {
+                Debug.Log(items[i].name + "found");
                 items[i] = null;
                 //itemImages[i].sprite = null;
                 //itemImages[i].enabled = false;
+                Debug.Log( "Removed!");
                 return;
             }
         }
