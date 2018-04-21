@@ -11,6 +11,7 @@ TagManager:
   - box2
   - case
   - Cameratext
+  - candle
   layers:
   - Default
   - TransparentFX

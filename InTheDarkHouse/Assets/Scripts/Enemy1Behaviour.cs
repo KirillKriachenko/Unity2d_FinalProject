@@ -10,11 +10,15 @@ public class Enemy1Behaviour : MonoBehaviour {
     public Animator enemyAnimator;
     public AnimationClip enemyAnimation;
 
+    AudioSource audioSource;
+
     public float distance;
     public float speed;
 
     // Use this for initialization
     void Start () {
+
+        audioSource = GetComponent<AudioSource>();
 
         enemyAnimator = GetComponent<Animator>();
         enemyObject = GameObject.FindGameObjectWithTag("Enemy");
@@ -28,6 +32,7 @@ public class Enemy1Behaviour : MonoBehaviour {
         //if (Vector2.Distance(enemyObject.transform.position,player.transform.position) < distance)
         if (Vector2.Distance(player.transform.position, enemyObject.transform.position) < distance)
         {
+            audioSource.enabled = true;
             distance = 1.5f;
             enemyAnimator.enabled = true;
             enemyAnimator.Play(enemyAnimation.name);

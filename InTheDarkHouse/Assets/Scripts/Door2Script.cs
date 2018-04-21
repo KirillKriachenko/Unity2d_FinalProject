@@ -9,15 +9,20 @@ public class Door2Script : MonoBehaviour {
     //public bool isOpenable;
     //public Texture itemNeeded;
 
+    public PlayerScript playerScript;
+
     private int counter = 0;
 
     private bool showGUI;
     private bool showNeeds;
 
+    //public AudioClip doorsSound;
+ 
+
     // Use this for initialization
     void Start () {
-		
-	}
+       
+    }
 
     public void OnGUI()
     {

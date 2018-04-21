@@ -6,9 +6,15 @@ public class Demage : MonoBehaviour
 {
     public float end = 5.0f;
     public float start = 0.0f;
-
+    public Font myFont;
+    public int fontSize;
     private int health = 100;
     private bool playerExit;
+
+    public float damageStart = 0.0f;
+    public float damageEnd = 3.0f;
+
+    public bool showDamage;
 
     // Use this for initialization
     void Start()
@@ -23,12 +29,21 @@ public class Demage : MonoBehaviour
         {
             if (start < end)
             {
+                
                 start += Time.deltaTime;
                 // execute block of code here
             }
             else
             {
+                StopAllCoroutines();
+                StartCoroutine("Blink");
                 health -= 10;
+                if (health <= 0)
+                {
+                    //Death.
+                }
+
+                
                 start = 0.0f;
             }
 
@@ -37,10 +52,22 @@ public class Demage : MonoBehaviour
 
     }
 
+    IEnumerator Blink()
+    {
+        while(true)
+        {
+            showDamage = true;
+            yield return new WaitForSeconds(0.2f);
+            showDamage = false;
+
+            break;
+        }
+        
+    }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "candle")
         {
             playerExit = true;
         }
@@ -48,7 +75,7 @@ public class Demage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "candle")
         {
             playerExit = false;
         }
@@ -56,9 +83,15 @@ public class Demage : MonoBehaviour
 
     void OnGUI()
     {
+        GUIStyle myStile = new GUIStyle(GUI.skin.label);
+        //myStile.font = myFont;
+
+        //Font myFont = myStile; //(Font)Resources.Load("Fonts/comic", typeof(Font));
+        myStile.font = myFont;
+        myStile.fontSize = 35;
 
         GUI.color = Color.red;
-        GUI.Label(new Rect(50, Screen.height - 50, 100, 100),"Health: " + health.ToString());
+        GUI.Label(new Rect(50, Screen.height - 50, 200, 200),"Health: " + health.ToString(), myStile);
         Update();
     }
 }
