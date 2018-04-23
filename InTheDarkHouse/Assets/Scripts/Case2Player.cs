@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ public class Case2Player : MonoBehaviour {
     public Text text;
     public Inventory inventory;
 
-    private Object destroyObject;
+    private GameObject destroyObject;
 
     private int counter = 0;
     private int lastObjectCount = 0;
@@ -54,8 +55,7 @@ public class Case2Player : MonoBehaviour {
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            Debug.Log(counter.ToString());
-            for (int i = counter; i < casesList.Count; i++)
+            for (int i = 0; i < casesList.Count; i++)
             {
                 try
                 {

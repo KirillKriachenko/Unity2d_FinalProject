@@ -61,49 +61,6 @@ public class Inventory : MonoBehaviour {
             }
 
         }
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    for (int j = 0; j < 5; j++)
-        //    {
-        //        if (GUI.Button(new Rect(i * 100, j * 100, 100, 100), items[items[j * 5 + i]]))
-        //        {
-
-        //        }
-        //    }
-        //}
     }
-                //public int[] items;
-                //public int moustSlot;
-                //public Lib lib;
-
-
-                //private float startPointX = Screen.width / 2-100;
-                //private float startPointY = Screen.height / 2-100;
-
-                //public void AddItem(Lib itemToAdd)
-                //{
-                //    for (int i = 0; i < items.Length; i++)
-                //    {
-                //        if (items[i] == null)
-                //        {
-                //            items[i] = itemToAdd;
-                //        }
-                //    }
-                //}
-
-                //void OnGUI()
-                //{
-                //    for (int i = 0; i < 5; i++)
-                //    {
-                //        for (int j = 0; j < 5; j++)
-                //        {
-                //            if (GUI.Button(new Rect(i*100,j*100,100,100),lib.Images[items[j*5+i]]))
-                //            {
-
-                //            }
-
-                //        }
-                //    }
-                //}
             
 }

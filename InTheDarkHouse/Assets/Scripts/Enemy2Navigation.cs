@@ -6,6 +6,7 @@ public class Enemy2Navigation : MonoBehaviour {
 
     //private UnityEngine.AI.NavMeshAgent nav;
     public GameObject player;
+    public GameObject deathCamera;
     //public LightPlaying light;
     public float speed;
 
@@ -33,6 +34,14 @@ public class Enemy2Navigation : MonoBehaviour {
                 audioSource.clip = clip2;
                 audioSource.enabled = true;
                 transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), player.transform.position, speed * Time.deltaTime);
+            }
+
+            if (player.transform.position == this.transform.position)
+            {
+                //dead
+
+                player.SetActive(false);
+                deathCamera.SetActive(true);
             }
             
         }

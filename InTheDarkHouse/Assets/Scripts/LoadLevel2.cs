@@ -17,7 +17,6 @@ public class LoadLevel2 : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Triggered enter");
         if (other.tag == "Player")
         {
             SceneManager.LoadScene("Level2");

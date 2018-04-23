@@ -24,7 +24,7 @@ public class LightPlaying : MonoBehaviour {
     private bool showTips;
     // Use this for initialization
     void Start () {
-        candleHealth = 100;
+        //candleHealth = 100;
 	}
 	
 	// Update is called once per frame

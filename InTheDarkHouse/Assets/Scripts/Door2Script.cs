@@ -16,6 +16,8 @@ public class Door2Script : MonoBehaviour {
     private bool showGUI;
     private bool showNeeds;
 
+    private string doorName;
+
     //public AudioClip doorsSound;
  
 
@@ -64,17 +66,20 @@ public class Door2Script : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.E))
         {
             showGUI = false;
-            for (int i = counter; i < doorsList.Count; i++)
+            for (int i = 0; i < doorsList.Count; i++)
             {
+                Debug.Log("Loop number" + i);
                 try
                 {
                     if (Vector2.Distance(this.transform.position, doorsList[i].transform.position) < distance)
                     {
+                        Debug.Log("Distance passed");
 
                         if (GameObject.Find(doorsList[i].name).GetComponent<DoorIteraction>().openDoor() == true)
                         {
-                            counter += 1;
-                            Destroy(doorsList[i].gameObject);
+                            doorName = doorsList[i].name;
+                            doorsList.RemoveAt(i);
+                            Destroy(GameObject.Find(doorName));
                             break;
                         }
                         if (GameObject.Find(doorsList[i].name).GetComponent<DoorIteraction>().openDoor() == false)
@@ -83,6 +88,8 @@ public class Door2Script : MonoBehaviour {
                             break;
                         }
                     }
+
+                    //Debug.Log()
                 }
                 catch (System.Exception e)
                 {

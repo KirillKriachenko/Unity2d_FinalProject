@@ -16,6 +16,9 @@ public class Demage : MonoBehaviour
 
     public bool showDamage;
 
+    public GameObject deathCamera;
+    public GameObject playerCamra;
+
     // Use this for initialization
     void Start()
     {
@@ -40,6 +43,8 @@ public class Demage : MonoBehaviour
                 health -= 10;
                 if (health <= 0)
                 {
+                    playerCamra.SetActive(false);
+                    deathCamera.SetActive(true);
                     //Death.
                 }
 
