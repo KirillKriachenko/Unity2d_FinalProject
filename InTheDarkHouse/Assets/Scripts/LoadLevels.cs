@@ -15,7 +15,7 @@ public class LoadLevels : MonoBehaviour {
 
         if (other.tag == "Player" && this.name == "Load1-2")
         {
-            SceneManager.LoadScene("Level2");
+            SceneManager.LoadScene("Level2-1");
         }
 
         if (other.tag == "Player" && this.name == "Load2-1")
@@ -28,7 +28,7 @@ public class LoadLevels : MonoBehaviour {
             SceneManager.LoadScene("Level3"); // here should load level 3
         }
 
-        else
+        if (other.tag == "Player" && this.name == "LoadLevel3-1")
         {
             SceneManager.LoadScene("Level3-1");
         }

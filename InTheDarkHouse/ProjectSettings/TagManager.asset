@@ -12,6 +12,7 @@ TagManager:
   - case
   - Cameratext
   - candle
+  - Navigation
   layers:
   - Default
   - TransparentFX
